@@ -5,6 +5,7 @@ const listEndpoints = require('express-list-endpoints');
 const app = express();
 
 const userRouter = require('./src/routes/users');
+const diseaseRouter = require('./src/routes/diseases');
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ mongoose.connect(process.env.MONGODB_URI,{
 
 app.use(express.json());
 app.use('/api/users', userRouter);
+app.use('/api/diseases', diseaseRouter);
 
 app.get('/', (req,res)=>{
     console.log('Server running');
