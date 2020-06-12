@@ -16,9 +16,10 @@ userRouter.get("/:id", async (req, res) => {
 
 userRouter.post("/signup", async (req, res) => {
   try {
-    const newUser = await User.register(req.body, req.body.password);
+    const newUser = await User.register(req.body, req.body.password)
+    const user = await User.findById(newUser._id)
     const token = getToken(newUser);
-    res.status(200).json({ user: newUser, access_token: token });
+    res.status(200).json({ user, access_token: token });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
@@ -55,7 +56,7 @@ userRouter.put("/:id", passport.authenticate("jwt"), async (req, res) => {
     const user = await User.findByIdAndUpdate(
       req.user._id,
       { $set: { ...req.body } },
-      { new: true }
+      { new: true , runValidators:true}
     );
     res.json(user);
   } catch (error) {
