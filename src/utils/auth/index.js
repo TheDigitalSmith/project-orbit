@@ -3,7 +3,7 @@ const LocalStrategy = require("passport-local");
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 const jwt = require("jsonwebtoken");
-const User = require("../../schemas/users/index");
+const {User} = require("../../schemas/users/index");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
