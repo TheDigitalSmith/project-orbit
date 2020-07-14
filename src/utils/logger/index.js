@@ -4,7 +4,7 @@ const { createLogger, format, transports } = winston;
 const { combine, timestamp, colorize, prettyPrint, json } = format;
 
 const logger = createLogger({
-  format: combine(colorize(), timestamp(), prettyPrint(), json()),
+  format: combine(timestamp(), prettyPrint(), json()),
   transports: [
     new transports.Console({
       level: "info",

@@ -37,6 +37,7 @@ userRouter.put(
   "/:id",
   [passport.authenticate("jwt"), validator(validateUserInfo)],
   async (req, res) => {
+    console.log(req.body);
     delete req.body._id;
     const authorisedUserId = req.user._id.toString();
     if (req.params.id !== authorisedUserId)

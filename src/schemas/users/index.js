@@ -2,6 +2,19 @@ const mongoose = require("mongoose");
 const plm = require("passport-local-mongoose");
 const Joi = require("@hapi/joi");
 
+const cardiacPlan = new mongoose.Schema({
+  rehabDuration: Number,
+  recommendedExerciseFrequency: Number,
+  exerciseDurationGoal: Number,
+  dailyFrequencyGoal: Number,
+  weeklyFrequencyGoal: Number,
+  currentExercise: Number,
+  currentDailyFrequency: Number,
+  currentWeeklyFrequency: Number,
+  thrMin: Number,
+  thrMax: Number,
+});
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -35,6 +48,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  cardiacRehabPlan: [cardiacPlan],
 });
 
 function validateUserSignUp(user) {
@@ -56,9 +70,11 @@ function validateUserInfo(user) {
     sex: Joi.string().valid(...sexEnum),
     height: Joi.number().min(0).max(300),
     weight: Joi.number().min(0).max(300),
+    rehabDuration: Joi.number(),
+    cardiacRehabPlan: Joi.array(),
   });
 
-  return schema.validate(user);
+  return schema.validate(user, { allowUnknown: true, abortEarly: false });
 }
 
 userSchema.plugin(plm);
