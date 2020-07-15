@@ -56,7 +56,7 @@ diaryRouter.post('/ai',async(req, res)=>{
             console.log(`Name: ${category.name}, Confidence: ${category.confidence}`);
         });
 
-        // 4. Detecting the syntax of the document
+/*         // 4. Detecting the syntax of the document
         // Need to specify an encodingType to receive word offsets
         const encodingType = 'UTF8';
         
@@ -67,7 +67,7 @@ diaryRouter.post('/ai',async(req, res)=>{
         syntax.tokens.forEach(part => {
             console.log(`${part.partOfSpeech.tag}: ${part.text.content}`);
             console.log('Morphology:', part.partOfSpeech);
-        });
+        }); */
 
         const diary = await Diary.create({
             text: req.body.text, 
@@ -75,7 +75,7 @@ diaryRouter.post('/ai',async(req, res)=>{
             magnitude: sentiment.magnitude,
             entities: entities,
             categories: classification.categories,
-            tokens: syntax.tokens
+            //tokens: syntax.tokens
         })
 
         res.json(diary)

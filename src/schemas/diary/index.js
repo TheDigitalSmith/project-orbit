@@ -6,7 +6,7 @@ const diarySchema=new mongoose.Schema ({
     magnitude: Number,
     entities: Array,
     categories: Array,
-    tokens: Array
+    //tokens: Array
 })
 
 const Diary=mongoose.model('diary', diarySchema)
