@@ -12,6 +12,7 @@ const logger = require("./src/utils/logger");
 const userRouter = require("./src/routes/users");
 const diseaseRouter = require("./src/routes/diseases");
 const errorMiddleware = require("./src/utils/error");
+const diaryRouter = require("./src/routes/diaries")
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/api/users", userRouter);
 app.use("/api/diseases", diseaseRouter);
+app.use("/api/diaries", diaryRouter)
 app.use(errorMiddleware);
 
 app.get("/", (req, res) => {
