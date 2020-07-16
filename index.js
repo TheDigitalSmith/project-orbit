@@ -38,8 +38,8 @@ app.get("/", (req, res) => {
   res.send("Server up and running");
 });
 
-const port = process.env.PORT || 9000;
-app.listen(3001, () => {
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
   logger.info(`App is launched on launchpad http://localhost:${port}`);
 });
 console.log(listEndpoints(app));
