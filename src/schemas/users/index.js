@@ -3,7 +3,7 @@ const plm = require("passport-local-mongoose");
 const Joi = require("@hapi/joi");
 
 const cardiacPlan = new mongoose.Schema({
-  rehabDuration: Number,
+  rehabDuration: Date,
   recommendedExerciseFrequency: Number,
   exerciseDurationGoal: Number,
   dailyFrequencyGoal: Number,
@@ -49,6 +49,7 @@ const userSchema = new mongoose.Schema({
     default: false,
   },
   cardiacRehabPlan: [cardiacPlan],
+  points: Number,
 });
 
 function validateUserSignUp(user) {
